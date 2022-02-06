@@ -17,11 +17,7 @@
         android:name="com.example.imdb.details.DetailsFragment"/>
 
 
-    <action android:id="@+id/action_move_from_list_to_details">
-        <argument android:name="id"
-            android:defaultValue="@null"
-            app:argType="java.lang.String"
-            app:nullable="true"
-            />
+    <action android:id="@+id/action_move_from_list_to_details"
+        app:destination="@id/detailFragment">
     </action>
 </navigation>

@@ -48,17 +48,19 @@ class MoviesAdaptor(private val context: Context , val onSelection : (movie:Movi
     }
 }
 
-@BindingAdapter("loadImage")
-fun loadImage (view:ImageView?,data:Movie?){
+@BindingAdapter("loadPoster")
+fun loadPoster (view:ImageView?,data:Movie?){
     if (view == null || data == null ){
         return
     }
+    val index = ImdbRepository.configuration.imagesConfiguration?.posterSizes?.size!!-1
     Glide.with(view)
-        .load(BASE_IMAGE + ImdbRepository.configuration.imagesConfiguration?.posterSizes!![2] + data.posterPath)
+        .load(BASE_IMAGE + ImdbRepository.configuration.imagesConfiguration?.posterSizes!![index] + data.posterPath)
         .placeholder(R.drawable.placeholder)
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
         .into(view)
 }
+
 
 
 @BindingAdapter("customTextColor")

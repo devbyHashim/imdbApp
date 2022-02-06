@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.imdb.models.ImdbConfiguration
+import com.example.imdb.models.Movie
 import com.example.imdb.models.MovieResponse
 import com.example.imdb.network.ApiResult
 import com.example.imdb.network.ApiService
@@ -50,6 +51,21 @@ object ImdbRepository{
         return liveData
     }
 
+    fun movieDetails(path: String): LiveData<ApiResult<Movie>> {
+        val liveData = MutableLiveData<ApiResult<Movie>>()
+        liveData.value = ApiResult.Loading()
+        repositoryScope.launch {
+            val response = apiService.details(path,KEY)
+                .execute()
+            if (response.isSuccessful && response.code()==200 && response.body()!=null){
+                liveData.postValue(ApiResult.Success(response.body()!!))
+            }
+            else{
+                liveData.postValue(ApiResult.Error(Throwable("issue in api")))
+            }
+        }
+        return liveData
+    }
 
 
 

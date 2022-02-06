@@ -2,6 +2,7 @@ package com.example.imdb.network
 
 import com.example.imdb.BASE_URL
 import com.example.imdb.models.ImdbConfiguration
+import com.example.imdb.models.Movie
 import com.example.imdb.models.MovieResponse
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
@@ -11,6 +12,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 object NetworkManager {
@@ -39,6 +41,11 @@ interface ApiService{
 
     @GET("/3/configuration")
     fun configuration(@Query("api_key")api_key:String):Call<ImdbConfiguration>
+
+    @GET("/3/movie/{Path}")
+    fun details(@Path("Path")path:String ,@Query("api_key")api_key:String):Call<Movie>
+
+
 
 }
 

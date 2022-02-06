@@ -11,9 +11,12 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.imdb.MainViewModel
 import com.example.imdb.MainViewModelInjector
 import com.example.imdb.databinding.FragmentListBinding
+import com.example.imdb.details.DetailsFragment
+import com.example.imdb.details.DetailsFragmentDirections
 import com.example.imdb.factory
 import com.example.imdb.models.MovieResponse
 import com.example.imdb.network.ApiResult
@@ -25,7 +28,8 @@ class ListFragment: Fragment() {
     }
     private val adaptor by lazy {
         MoviesAdaptor(requireContext()){
-
+            viewModel.selectedMovieId.value = it.id.toString()
+            findNavController().navigate(DetailsFragmentDirections.actionMoveFromListToDetails())
         }
     }
 

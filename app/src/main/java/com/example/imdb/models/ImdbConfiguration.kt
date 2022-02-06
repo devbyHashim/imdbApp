@@ -38,5 +38,5 @@ data class ImagesConfiguration(
 	@field:SerializedName("profile_sizes")
 	val profileSizes: List<String>? = null
 ) : Parcelable{
-	val posterSizeLength = if (posterSizes?.size == null ) 0  else posterSizes.size
+
 }
