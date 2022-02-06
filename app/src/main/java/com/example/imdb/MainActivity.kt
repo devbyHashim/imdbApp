@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.imdb.databinding.ActivityMainBinding
 
 class MainActivity :AppCompatActivity(){
@@ -12,7 +13,8 @@ class MainActivity :AppCompatActivity(){
         DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
     }
     private val viewModel by lazy {
-
+        val factory = factory(MainViewModelInjector())
+        ViewModelProvider(this,factory)[MainViewModel::class.java]
     }
 
 

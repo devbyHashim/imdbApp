@@ -6,11 +6,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+       <com.google.android.material.textfield.TextInputLayout
+           app:layout_constraintTop_toTopOf="parent"
+           android:id="@+id/inputLayout"
+           android:layout_width="match_parent"
+           android:hint="Enter Search Text"
+           android:theme="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+           android:layout_height="wrap_content">
+
+           <com.google.android.material.textfield.TextInputEditText
+               android:id="@+id/etQuery"
+               android:singleLine="true"
+               android:imeOptions="actionDone"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+       </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintTop_toBottomOf="@id/inputLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
